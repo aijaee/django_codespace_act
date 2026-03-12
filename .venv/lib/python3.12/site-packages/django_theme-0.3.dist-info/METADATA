@@ -1,0 +1,107 @@
+Metadata-Version: 2.1
+Name: django-theme
+Version: 0.3
+Summary: Allow a Django user to set a theme preference.
+Home-page: https://github.com/armandtvz/django-theme
+Author: Armandt van Zyl
+Author-email: armandtvz@gmail.com
+License: GPL-3.0
+Platform: UNKNOWN
+Classifier: Environment :: Web Environment
+Classifier: Framework :: Django
+Classifier: Framework :: Django :: 3.0
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: GNU General Public License v3 (GPLv3)
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Topic :: Internet :: WWW/HTTP
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: Django (>=3.0)
+
+# django-theme
+Allow a Django user to set a theme preference.
+
+
+## Quickstart
+1. Install django-theme via pip:
+   ```
+   pip install django-theme
+   ```
+
+1. Add `theme` to your `INSTALLED_APPS` in your project settings.py file:
+   ```python
+   INSTALLED_APPS = [
+       '...',
+       'theme',
+   ]
+   ```
+
+1. Run migrate:
+   ```
+   python manage.py migrate
+   ```
+
+1. Add the following to your `context_processors` setting:
+   ```python
+   TEMPLATES = [
+       {
+           'BACKEND': '...',
+           'OPTIONS': {
+               'context_processors': [
+                   '...',
+                   '...',
+                   'theme.context_processors.theme',
+               ],
+           },
+       },
+   ]
+   ```
+
+1. In your template, you can then use the following snippet (theme options
+   are 'system', 'dark' and 'light'):
+   ```
+   <body class="{% spaceless %}
+           {% if theme == 'dark' %}
+                   dark-theme
+           {% endif %}
+   {% endspaceless %}">
+   ```
+
+1. The `Theme` model defines a one-to-one relationship with the `User` model.
+   Therefore, the theme object for a user can be retrieved by using:
+   ```python
+   theme = user.theme
+   ```
+
+
+
+
+## Compatibility
+- Compatible with Python 3.8 and above.
+- Compatible with Django 3.2 and above.
+
+
+## Versioning
+This project follows [semantic versioning][200] (SemVer).
+
+
+## License and code of conduct
+Check the root of the repo for these files.
+
+
+
+
+
+
+
+
+[//]: # (Links)
+
+[200]: https://semver.org/
+
+
